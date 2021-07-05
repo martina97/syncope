@@ -159,10 +159,12 @@ under the License.
               <maxMutationsPerClass>30</maxMutationsPerClass>
               <targetClasses>
                 <param>org.apache.syncope.core.provisioning.api.utils.FormatUtils</param>
+                <param>org.apache.syncope.core.provisioning.api.utils.RealmUtils</param>
               </targetClasses>
               <targetTests>
                 <param>org.apache.syncope.core.provisioning.api.utils.MyFormatUtilsTest</param>
                 <param>org.apache.syncope.core.provisioning.api.utils.MyParseNumberUtilsTest</param>
+                <param>org.apache.syncope.core.provisioning.api.utils.MyRealmNormalizingAddToTest</param>
               </targetTests>
 
               <avoidCallsTo>
