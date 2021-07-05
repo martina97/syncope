@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @RunWith(Parameterized.class)
-public class MyParseNumberTest {
+public class MyParseNumberUtilsTest {
     //private final Calendar calendar = Calendar.getInstance();
     private static final Calendar calendar = Calendar.getInstance();
 
@@ -22,7 +22,7 @@ public class MyParseNumberTest {
     private String source;
     private String conversionPattern;
 
-    public MyParseNumberTest(boolean expectedResult, String source, String conversionPattern){
+    public MyParseNumberUtilsTest(boolean expectedResult, String source, String conversionPattern){
         this.expectedResult = expectedResult;
         this.source = source;
         this.conversionPattern = conversionPattern;

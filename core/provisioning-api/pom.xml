@@ -102,14 +102,80 @@ under the License.
           <artifactId>junit</artifactId>
           <scope>test</scope>
       </dependency>
+      <dependency>
+      <groupId>org.pitest</groupId>
+      <artifactId>pitest-maven</artifactId>
+      <version>1.5.1</version>
+      <type>maven-plugin</type>
+    </dependency>
   </dependencies>
 
   <build>
     <plugins>
       <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.5</version>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
       </plugin>
     </plugins>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>**/security.properties</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>false</filtering>
+        <excludes>
+          <exclude>**/security.properties</exclude>
+        </excludes>
+      </resource>
+    </resources>
   </build>
+  <profiles>
+    <profile>
+      <id>pit</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-maven</artifactId>
+            <version>1.5.1</version>
+            <dependencies>
+              <dependency>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-junit5-plugin</artifactId>
+                <version>0.12</version>
+              </dependency>
+            </dependencies>
+            <configuration>
+              <maxMutationsPerClass>30</maxMutationsPerClass>
+              <targetClasses>
+                <param>org.apache.syncope.core.provisioning.api.utils.FormatUtils</param>
+              </targetClasses>
+              <targetTests>
+                <param>org.apache.syncope.core.provisioning.api.utils.MyFormatUtilsTest</param>
+                <param>org.apache.syncope.core.provisioning.api.utils.MyParseNumberUtilsTest</param>
+              </targetTests>
+
+              <avoidCallsTo>
+                <avoidCallsTo>java.util.logging</avoidCallsTo>
+                <avoidCallsTo>org.apache.log4j</avoidCallsTo>
+                <avoidCallsTo>org.slf4j</avoidCallsTo>
+                <avoidCallsTo>org.apache.commons.logging</avoidCallsTo>
+              </avoidCallsTo>
+
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
