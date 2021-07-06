@@ -44,16 +44,17 @@ public class MyParseDateFormatUtilsTest {
         return Arrays.asList(new Object[][] {
 
                 {true, new SimpleDateFormat("dd-MM-yyyy").format(date), "dd-MM-yyyy"} ,  //costanti di default
-                {true, "ciao", "dd-MM-yyyy"} ,
-                {true, null, "dd-MM-yyyy"},
-                {true, "", "dd-MM-yyyy"} ,
-                {true, new SimpleDateFormat(SyncopeConstants.DEFAULT_DATE_PATTERN).format(date),SyncopeConstants.DEFAULT_DATE_PATTERN },
-                {true, new SimpleDateFormat("dd-MM-yyyy").format(date),SyncopeConstants.DEFAULT_DATE_PATTERN } , //uso un pattern per creare la data e un altro per fare il parse
+                {false, "ciao", "dd-MM-yyyy"} ,
+                {false, null, "dd-MM-yyyy"},
+               // {true, "", "dd-MM-yyyy"} ,  //inutile
+                //todo: creare una source con un pattern, e mettere come conversion pattern un pattern diverso!
+                //{true, new SimpleDateFormat(SyncopeConstants.DEFAULT_DATE_PATTERN).format(date),SyncopeConstants.DEFAULT_DATE_PATTERN },
+                {false, new SimpleDateFormat("dd-MM-yyyy").format(date),SyncopeConstants.DEFAULT_DATE_PATTERN } , //uso un pattern per creare la data e un altro per fare il parse
 
 
-                {true, new SimpleDateFormat("dd-MM-yyyy").format(date), ""} ,  //costanti di default
-                {true, new SimpleDateFormat("dd-MM-yyyy").format(date), null} ,  //costanti di default
-                {true, new SimpleDateFormat("dd-MM-yyyy").format(date), "ciao"} ,  //costanti di default
+                {false, new SimpleDateFormat("dd-MM-yyyy").format(date), ""} ,  //ritorna ParseException: Unable to parse the date: 06-07-2021
+                {false, new SimpleDateFormat("dd-MM-yyyy").format(date), null} ,
+                {false, new SimpleDateFormat("dd-MM-yyyy").format(date), "ciao"} , //ritorna IllegalArgumentException: Format 'c' not supported
 
         });
     }
@@ -71,7 +72,7 @@ public class MyParseDateFormatUtilsTest {
     @Test
     public void formatDateTest(){
 
-
+       //System.out.println("source == " + source + "conversionPattern == " + conversionPattern);
         try {
             Assert.assertEquals(DateUtils.parseDate(source,conversionPattern), FormatUtils.parseDate(source, conversionPattern));
         } catch (ParseException e) {
@@ -89,7 +90,8 @@ public class MyParseDateFormatUtilsTest {
             }
 
         } catch (NullPointerException e) {
-            Assert.assertEquals(e.getMessage(), null);
+            e.printStackTrace();
+            Assert.assertEquals(expectedResult, false);
             // ci entro quando il pattern e' null
             System.out.println();
         }

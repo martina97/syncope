@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 
 @RunWith(Parameterized.class)
 public class MyFormatUtilsTest {
-    //private final Calendar calendar = Calendar.getInstance();
+    private static final Calendar calendar = Calendar.getInstance();
 
     private boolean expectedResult;
     private Date date;
@@ -33,7 +33,7 @@ public class MyFormatUtilsTest {
     @Parameterized.Parameters
     public static Collection<?> getParameter() {
 
-        Calendar calendar = Calendar.getInstance();
+        //Calendar calendar = Calendar.getInstance();
 
         return Arrays.asList(new Object[][] {
 
@@ -47,6 +47,7 @@ public class MyFormatUtilsTest {
 
                 //output = stringa non parsata, quindi del tipo : 2021-07-03T14:58:31+0200 TODO: cercare un format date che mi stampi questa stringa intera
                 //la funzione format non da errore se il pattern e' null, semplicemente non si effettua il format della data
+                //todo defaultdatepattern
                 { true, calendar.getTime(), true, null},
                 { true, calendar.getTime(), false, null},
 

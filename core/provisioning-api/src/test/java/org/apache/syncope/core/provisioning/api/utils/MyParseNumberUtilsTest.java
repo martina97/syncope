@@ -37,19 +37,17 @@ public class MyParseNumberUtilsTest {
 
 
                 //output = stringa corretta
-                { true, String.valueOf(date.getTime()), "###,###"}, //ok
+                { true, "12345", "###,###"}, //ok
 
 
-                { false, "", "###,###"}, //java.text.ParseException: Unparseable number: ""
-                { false, "ciao", "###,###"}, //java.text.ParseException: Unparseable number: "ciao"
+               // { false, " ", "###,###"}, //java.text.ParseException: Unparseable number: ""
+                { false, "ciao123", "###,###"}, //java.text.ParseException: Unparseable number: "ciao"
                 { false, null, "###,###"}, //java.lang.NullPointerException
-                //{ true, "12", "###,###"},   //ok
 
                 { false, String.valueOf(date.getTime()), "invalidPattern"},  //java.text.ParseException: Unparseable number: "1625394586723"
                 //{ true, "", "invalidPattern"}, //java.text.ParseException: Unparseable number: ""
                 //{ true, "ciao", "invalidPattern"}, //java.text.ParseException: Unparseable number: "ciao"
                 //{ true, null, "invalidPattern"}, //java.lang.NullPointerException --> posso toglierlo, tanto c'e' quello sopra (il 3) che e' uguale
-                //{ true, "12", "invalidPattern"}, //java.text.ParseException: Unparseable number: "12"
 
                 //danno tutte NullPointerException, quindi ne basta 1
                 { false, String.valueOf(date.getTime()), null},
