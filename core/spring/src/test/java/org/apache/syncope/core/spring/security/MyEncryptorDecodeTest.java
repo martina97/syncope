@@ -42,12 +42,12 @@ public class MyEncryptorDecodeTest {
     }
 
 
-    public static String encryptPsswd(String value) {
+    public static String encryptPsswd(String value,CipherAlgorithm cipherAlgorithm ) {
         String encPassword = null;
         System.out.println("ciaoooooooo1");
 
         try {
-            encPassword = ENCRYPTOR.encode(value, CipherAlgorithm.AES);
+            encPassword = ENCRYPTOR.encode(value, cipherAlgorithm);
             System.out.println("ciaoooooooo2");
 
         } catch (Exception e) {
@@ -69,13 +69,14 @@ public class MyEncryptorDecodeTest {
 
                 //output = stringa corretta
                 // { true, "9Pav+xl+UyHt02H9ZBytiA==", CipherAlgorithm.AES},
-                { true, encryptPsswd("password"), CipherAlgorithm.AES},
-                { true, null, CipherAlgorithm.AES}, //se ho null, la funzione decode mi restituisce una decryption = null
+                { true, encryptPsswd("password", CipherAlgorithm.AES), CipherAlgorithm.AES},
+                //{ true, null, CipherAlgorithm.AES}, //se ho null, la funzione decode mi restituisce una decryption = null
                 { false, "ciao", CipherAlgorithm.AES}, //javax.crypto.IllegalBlockSizeException: Input length must be multiple of 16 when decrypting with padded cipher
-                { false, "ciakfodjfnclo==", CipherAlgorithm.AES}, //java.lang.IllegalArgumentException: Last unit does not have enough valid bits
+                //{ false, "ciakfodjfnclo==", CipherAlgorithm.AES}, //java.lang.IllegalArgumentException: Last unit does not have enough valid bits
 
-                // { true, null, CipherAlgorithm.SHA256}, //per la coverage, fare dopo
-                // { true, "9Pav+xl+UyHt02H9ZBytiA==", CipherAlgorithm.SHA256}, //per la coverage, fare dopo
+                {true, null, null},
+               // { true, null, CipherAlgorithm.SHA256}, //per la coverage, fare dopo
+               { false, encryptPsswd("password", CipherAlgorithm.SHA256), CipherAlgorithm.SHA256}, //per la coverage, fare dopo
 
 
                 /*
@@ -139,24 +140,6 @@ public class MyEncryptorDecodeTest {
     @Test
     public void formatDateTest(){
         boolean result;
-
-        //System.out.println("encoded == " + encoded );
-        try {
-            String prova = ENCRYPTOR.decode(null,cipherAlgorithm);
-            System.out.println(("prova ==" + prova));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();
-        } catch (IllegalBlockSizeException e) {
-            e.printStackTrace();
-        } catch (BadPaddingException e) {
-            e.printStackTrace();
-        }
 
         try {
             //String encPassword = encryptor.encode(passwdToEncode, cipherAlgorithm);

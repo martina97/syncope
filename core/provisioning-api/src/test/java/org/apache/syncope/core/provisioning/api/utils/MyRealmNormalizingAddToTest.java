@@ -48,12 +48,13 @@ public class MyRealmNormalizingAddToTest {
                 //SE newRealm INIZIA CON UNO DEI DUE REALM, LA FUNZIONE RITORNA FALSE, E QUINDI newRealm NON VIENE AGGIUNTO A realms
                 {false, "realm1", "realm2", "realm123"}, // alla fine realms = [realm2, realm1]
                 {true, "realm123", "realm2", "realm1"}, //ritorna true, e realm123 viene sostituito da realm1, alla fine realms = [realm2, realm1]
-                {false, "realm1", "realm1", "realm1"},//se ne aggiungo due uguali, realms=[realm1], e la funzione ritorna false perche' newRealm.startsWith(realm1)
-                {false, "realm1", "realm2", "realm1"},   //ritorna false, perche' non viene aggiunto
+              //  {false, "realm1", "realm1", "realm1"},//se ne aggiungo due uguali, realms=[realm1], e la funzione ritorna false perche' newRealm.startsWith(realm1)
+               // {false, "realm1", "realm2", "realm1"},   //ritorna false, perche' non viene aggiunto
                 //{false, null, "realm2", "realm1"},   //non ha senso metterne uno null e uno no, tanto la funzione normalizingAddTo scorre tutti i realms
-                {false, null, null, "realm1"},   //non ha senso metterne uno null e uno no, tanto la funzione normalizingAddTo scorre tutti i realms
-                {true, "realm1", "realm2", ""},   //in questo caso vengono sostituiti realm1 e realm2 con "", quindi infine si avra' che realms=[]
-                {false, "realm1", "realm2", null},   //in questo caso vengono sostituiti realm1 e realm2 con "", quindi infine si avra' che realms=[]
+               // {false, null, null, "realm1"},   //non ha senso metterne uno null e uno no, tanto la funzione normalizingAddTo scorre tutti i realms
+               // {true, "realm1", "realm2", ""},   //in questo caso vengono sostituiti realm1 e realm2 con "", quindi infine si avra' che realms=[]
+               // {false, "realm1", "realm2", null},   //in questo caso vengono sostituiti realm1 e realm2 con "", quindi infine si avra' che realms=[]
+                {false, null, null, null},   //in questo caso vengono sostituiti realm1 e realm2 con "", quindi infine si avra' che realms=[]
 
         });
     }
@@ -76,7 +77,7 @@ public class MyRealmNormalizingAddToTest {
 
 
     @Test
-    public void formatDateTest(){
+    public void normalizingAddToTest(){
         /*
         System.out.println("realms == " + realms);
         System.out.println("new realm == " + newRealm);

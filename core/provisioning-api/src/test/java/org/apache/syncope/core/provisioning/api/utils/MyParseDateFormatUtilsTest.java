@@ -45,15 +45,17 @@ public class MyParseDateFormatUtilsTest {
 
                 {true, new SimpleDateFormat("dd-MM-yyyy").format(date), "dd-MM-yyyy"} ,  //costanti di default
                 {false, "ciao", "dd-MM-yyyy"} ,
-                {false, null, "dd-MM-yyyy"},
+               // {false, "", "dd-MM-yyyy"} ,
+                //{false, null, "dd-MM-yyyy"},
                // {true, "", "dd-MM-yyyy"} ,  //inutile
                 //todo: creare una source con un pattern, e mettere come conversion pattern un pattern diverso!
                 //{true, new SimpleDateFormat(SyncopeConstants.DEFAULT_DATE_PATTERN).format(date),SyncopeConstants.DEFAULT_DATE_PATTERN },
                 {false, new SimpleDateFormat("dd-MM-yyyy").format(date),SyncopeConstants.DEFAULT_DATE_PATTERN } , //uso un pattern per creare la data e un altro per fare il parse
 
 
-                {false, new SimpleDateFormat("dd-MM-yyyy").format(date), ""} ,  //ritorna ParseException: Unable to parse the date: 06-07-2021
+               // {false, new SimpleDateFormat("dd-MM-yyyy").format(date), ""} ,  //ritorna ParseException: Unable to parse the date: 06-07-2021
                 {false, new SimpleDateFormat("dd-MM-yyyy").format(date), null} ,
+                {false, null, null},
                 {false, new SimpleDateFormat("dd-MM-yyyy").format(date), "ciao"} , //ritorna IllegalArgumentException: Format 'c' not supported
 
         });

@@ -42,18 +42,18 @@ public class MyParseNumberUtilsTest {
 
                // { false, " ", "###,###"}, //java.text.ParseException: Unparseable number: ""
                 { false, "ciao123", "###,###"}, //java.text.ParseException: Unparseable number: "ciao"
-                { false, null, "###,###"}, //java.lang.NullPointerException
+               // { false, null, "###,###"}, //java.lang.NullPointerException
 
-                { false, String.valueOf(date.getTime()), "invalidPattern"},  //java.text.ParseException: Unparseable number: "1625394586723"
+                { false, "12345", "invalidPattern"},  //java.text.ParseException: Unparseable number: "1625394586723"
                 //{ true, "", "invalidPattern"}, //java.text.ParseException: Unparseable number: ""
                 //{ true, "ciao", "invalidPattern"}, //java.text.ParseException: Unparseable number: "ciao"
                 //{ true, null, "invalidPattern"}, //java.lang.NullPointerException --> posso toglierlo, tanto c'e' quello sopra (il 3) che e' uguale
 
                 //danno tutte NullPointerException, quindi ne basta 1
-                { false, String.valueOf(date.getTime()), null},
+               // { false, String.valueOf(date.getTime()), null},
                 //{ true, "", null},
                 //{ true, "ciao", null},
-                //{ true, null, null},
+                { false, null, null},
                 //{ true, "12", null},
 
 
@@ -119,7 +119,7 @@ public class MyParseNumberUtilsTest {
             System.out.println("number == " + number);
             System.out.println("equals == " + Long.valueOf(source));
         } catch (Exception e) {
-            //e.printStackTrace();
+            e.printStackTrace();
             result = false;
         }
         Assert.assertEquals(expectedResult,result);

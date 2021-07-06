@@ -39,26 +39,24 @@ public class MyFormatUtilsTest {
 
                 //output = stringa corretta
                 { true, calendar.getTime(), true, "dd/MM/yyyy"},
-                { true, calendar.getTime(), false, "dd/MM/yyyy"},
+                //{ true, calendar.getTime(), false, "dd/MM/yyyy"},
 
                 //IllegalArgumentException perche' il pattern non e' valido
-                { false, calendar.getTime(), true, "invalidPattern"},
                 { false, calendar.getTime(), false, "invalidPattern"},
+                //{ false, calendar.getTime(), false, "invalidPattern"},
 
                 //output = stringa non parsata, quindi del tipo : 2021-07-03T14:58:31+0200 TODO: cercare un format date che mi stampi questa stringa intera
                 //la funzione format non da errore se il pattern e' null, semplicemente non si effettua il format della data
                 //todo defaultdatepattern
                 { true, calendar.getTime(), true, null},
-                { true, calendar.getTime(), false, null},
-
 
                 //NullPointerException a causa della data, quindi ne basta solo uno
                 {false, null, true, "dd/MM/yyyy"},
                 //{false, null, false, "dd/MM/yyyy"},
 
                 //IllegalArgumentException --> pattern non valido
-                {false, null, true, "invalidPattern"},
-                {false, null, true, "invalidPattern"},
+               // {false, null, true, "invalidPattern"},
+              //  {false, null, true, "invalidPattern"},
 
                 //NullPointerException dovuto alla data, perche' pattern null va bene --> non servono questi parametri, perche' testo gia'
                 // il caso in cui il pattern e' null

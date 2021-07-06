@@ -164,6 +164,7 @@ under the License.
               <targetTests>
                 <param>org.apache.syncope.core.provisioning.api.utils.MyFormatUtilsTest</param>
                 <param>org.apache.syncope.core.provisioning.api.utils.MyParseNumberUtilsTest</param>
+                <param>org.apache.syncope.core.provisioning.api.utils.MyParseDateFormatUtilsTest</param>
                 <param>org.apache.syncope.core.provisioning.api.utils.MyRealmNormalizingAddToTest</param>
               </targetTests>
 
