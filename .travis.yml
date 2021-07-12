@@ -35,8 +35,7 @@ git:
 env:
   global:
   - MAVEN_OPTS="-Xmx4096M -Xss128M -XX:+TieredCompilation -XX:TieredStopAtLevel=1 -noverify"
- # - TestCommand="mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=martina97_syncope"
-  - TestCommand="mvn -U -T 1C org.jacoco:jacoco-maven-plugin:prepare-agent clean install -DskipITs -Dtest=org.apache.syncope.core.provisioning.api.utils.*Test* sonar:sonar -Dsonar.projectKey=martina97_syncope -DfailIfNoTests=false test -Dinvoker.streamLogs=true -Dmodernizer.skip=true -Dianal.skip=true -Drat.skip=true -Dcheckstyle.skip=true -Dsass.skip=true"
+  - TestCommand="mvn -U -T 1C org.jacoco:jacoco-maven-plugin:prepare-agent clean install -DskipITs -Dtest=org.apache.syncope.core.provisioning.api.utils.*Test* sonar:sonar -Dsonar.projectKey=Martina97_syncope -DfailIfNoTests=false test -Dinvoker.streamLogs=true -Dmodernizer.skip=true -Dianal.skip=true -Drat.skip=true -Dcheckstyle.skip=true -Dsass.skip=true"
 install: true
 stages:
   - build
