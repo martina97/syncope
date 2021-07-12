@@ -1,18 +1,15 @@
 package org.apache.syncope.core.provisioning.api.utils;
 
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
-import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
-import static org.junit.Assert.*;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Date;
 
 @RunWith(Parameterized.class)
 public class MyFormatUtilsTest {
@@ -33,8 +30,6 @@ public class MyFormatUtilsTest {
     @Parameterized.Parameters
     public static Collection<?> getParameter() {
 
-        //Calendar calendar = Calendar.getInstance();
-
         return Arrays.asList(new Object[][] {
 
                 //output = stringa corretta
@@ -45,18 +40,18 @@ public class MyFormatUtilsTest {
                 { false, calendar.getTime(), false, "invalidPattern"},
                 //{ false, calendar.getTime(), false, "invalidPattern"},
 
-                //output = stringa non parsata, quindi del tipo : 2021-07-03T14:58:31+0200 TODO: cercare un format date che mi stampi questa stringa intera
-                //la funzione format non da errore se il pattern e' null, semplicemente non si effettua il format della data
-                //todo defaultdatepattern
+                //output = stringa non parsata, quindi del tipo : 2021-07-03T14:58:31+0200
+                // format non da errore se il pattern e' null, semplicemente non si effettua il format della data
                 { true, calendar.getTime(), true, null},
 
                 //NullPointerException a causa della data, quindi ne basta solo uno
                 {false, null, true, "dd/MM/yyyy"},
+
                 //{false, null, false, "dd/MM/yyyy"},
 
                 //IllegalArgumentException --> pattern non valido
                // {false, null, true, "invalidPattern"},
-              //  {false, null, true, "invalidPattern"},
+               // {false, null, true, "invalidPattern"},
 
                 //NullPointerException dovuto alla data, perche' pattern null va bene --> non servono questi parametri, perche' testo gia'
                 // il caso in cui il pattern e' null
@@ -68,35 +63,12 @@ public class MyFormatUtilsTest {
         });
     }
 
-    @Before
-    public void before(){
-        //this.cache = new ReadCache(UnpooledByteBufAllocator.DEFAULT, 10 * 1024);
-    }
-    @After
-    public void after(){
-        //cache.close();
-    }
-
 
     @Test
-    public void formatDateTest(){
-        //System.out.println(FormatUtils.format(date, lenient, conversionPattern));
-        //System.out.println(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(date));
-
-        //System.out.println(date.toInstant().atOffset(ZoneOffset.UTC).format(DateTimeFormatter.ISO_ZONED_DATE_TIME));
-
-        //System.out.println(date.toInstant().atOffset(ZoneOffset.UTC).format(DateTimeFormatter.));
+    public void formatTest(){
 
 
-        boolean result = true;
-        /*
-        try {
-            System.out.println(FormatUtils.format(date, lenient, conversionPattern));
-        } catch (Exception e ) {
-            e.printStackTrace();
-        }
-
-         */
+        boolean result;
 
         String formatDate;
 
@@ -106,7 +78,7 @@ public class MyFormatUtilsTest {
             // se il pattern e' null, la funzione non fallisce ma ritorna 2021-07-03T16:04:21+0200
             formatDate = FormatUtils.format(date, lenient, conversionPattern);
             result = formatDate.equals(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(date));
-            //Assert.assertEquals(formatDate, new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(date));
+
         }
         else {
             try {
@@ -114,7 +86,7 @@ public class MyFormatUtilsTest {
                 result = formatDate.equals(new SimpleDateFormat(conversionPattern).format(date));
             }
             catch (Exception e) {
-                e.printStackTrace();
+                //e.printStackTrace();
                 result = false;
             }
 
